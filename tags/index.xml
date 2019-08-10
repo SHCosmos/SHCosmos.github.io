@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Welcome to Doki Doki Pwn Club</title>
+    <link>http://www.example.com/tags/</link>
+    <description>Recent content in Tags on Welcome to Doki Doki Pwn Club</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>(c) 2019 Strelizia.</copyright>
+    <lastBuildDate>Sun, 11 Aug 2019 03:10:15 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PWN</title>
+      <link>http://www.example.com/tags/pwn/</link>
+      <pubDate>Sun, 11 Aug 2019 03:10:15 +0800</pubDate>
+      
+      <guid>http://www.example.com/tags/pwn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>http://www.example.com/tags/about/</link>
+      <pubDate>Sun, 11 Aug 2019 01:55:15 +0800</pubDate>
+      
+      <guid>http://www.example.com/tags/about/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
