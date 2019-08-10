@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Welcome to Doki Doki Pwn Club</title>
-    <link>/</link>
+    <link>https://shcosmos.github.io/</link>
     <description>Recent content on Welcome to Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>(c) 2019 Strelizia.</copyright>
     <lastBuildDate>Sun, 11 Aug 2019 03:10:15 +0800</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://shcosmos.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>House of Orange/IO_FILE利用学习</title>
-      <link>/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://shcosmos.github.io/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Sun, 11 Aug 2019 03:10:15 +0800</pubDate>
       
-      <guid>/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://shcosmos.github.io/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
       <description>开坑，待更新</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/about/</link>
+      <link>https://shcosmos.github.io/about/about/</link>
       <pubDate>Sun, 11 Aug 2019 01:55:15 +0800</pubDate>
       
-      <guid>/about/about/</guid>
+      <guid>https://shcosmos.github.io/about/about/</guid>
       <description>&lt;p&gt;HDU 大二&lt;br /&gt;
 Vidar-Team 成员&lt;br /&gt;
 日常在pwn题和被题pwn中挣扎&lt;br /&gt;
@@ -35,10 +35,10 @@ OSU入门中&lt;/p&gt;</description>
     
     <item>
       <title>First</title>
-      <link>/2019/08/11/first/</link>
+      <link>https://shcosmos.github.io/2019/08/11/first/</link>
       <pubDate>Sun, 11 Aug 2019 01:38:12 +0800</pubDate>
       
-      <guid>/2019/08/11/first/</guid>
+      <guid>https://shcosmos.github.io/2019/08/11/first/</guid>
       <description>&lt;p&gt;人生苦短我选hugo&lt;/p&gt;</description>
     </item>
     
