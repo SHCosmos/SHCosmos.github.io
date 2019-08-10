@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Welcome to Doki Doki Pwn Club</title>
-    <link>http://www.example.com/post/</link>
+    <link>shcosmos.github.io/post/</link>
     <description>Recent content in Posts on Welcome to Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>(c) 2019 Strelizia.</copyright>
     <lastBuildDate>Sun, 11 Aug 2019 03:10:15 +0800</lastBuildDate>
     
-	<atom:link href="http://www.example.com/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="shcosmos.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>House of Orange/IO_FILE利用学习</title>
-      <link>http://www.example.com/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
+      <link>shcosmos.github.io/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Sun, 11 Aug 2019 03:10:15 +0800</pubDate>
       
-      <guid>http://www.example.com/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>shcosmos.github.io/2019/08/11/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
       <description>开坑，待更新</description>
     </item>
     
     <item>
       <title>First</title>
-      <link>http://www.example.com/2019/08/11/first/</link>
+      <link>shcosmos.github.io/2019/08/11/first/</link>
       <pubDate>Sun, 11 Aug 2019 01:38:12 +0800</pubDate>
       
-      <guid>http://www.example.com/2019/08/11/first/</guid>
+      <guid>shcosmos.github.io/2019/08/11/first/</guid>
       <description>&lt;p&gt;人生苦短我选hugo&lt;/p&gt;</description>
     </item>
     

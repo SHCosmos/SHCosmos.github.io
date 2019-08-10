@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Abouts on Welcome to Doki Doki Pwn Club</title>
-    <link>http://www.example.com/about/</link>
+    <link>shcosmos.github.io/about/</link>
     <description>Recent content in Abouts on Welcome to Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>(c) 2019 Strelizia.</copyright>
     <lastBuildDate>Sun, 11 Aug 2019 01:55:15 +0800</lastBuildDate>
     
-	<atom:link href="http://www.example.com/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="shcosmos.github.io/about/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>http://www.example.com/about/about/</link>
+      <link>shcosmos.github.io/about/about/</link>
       <pubDate>Sun, 11 Aug 2019 01:55:15 +0800</pubDate>
       
-      <guid>http://www.example.com/about/about/</guid>
+      <guid>shcosmos.github.io/about/about/</guid>
       <description>&lt;p&gt;HDU 大二&lt;br /&gt;
 Vidar-Team 成员&lt;br /&gt;
 日常在pwn题和被题pwn中挣扎&lt;br /&gt;
