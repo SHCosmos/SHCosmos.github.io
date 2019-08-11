@@ -8,18 +8,18 @@
 <meta name="generator" content="Hugo 0.56.3 with theme Tranquilpeak 0.4.6-BETA">
 <meta name="author" content="SHCosmos">
 <meta name="keywords" content="">
-<meta name="description" content="开坑，待更新">
+<meta name="description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来还是挺吃力的，在此记录一下">
 
 
-<meta property="og:description" content="开坑，待更新">
+<meta property="og:description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来还是挺吃力的，在此记录一下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="House of Orange/IO_FILE利用学习">
 <meta name="twitter:title" content="House of Orange/IO_FILE利用学习">
 <meta property="og:url" content="https://shcosmos.github.io/2019/08/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">
 <meta property="twitter:url" content="https://shcosmos.github.io/2019/08/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">
 <meta property="og:site_name" content="Doki Doki Pwn Club">
-<meta property="og:description" content="开坑，待更新">
-<meta name="twitter:description" content="开坑，待更新">
+<meta property="og:description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来还是挺吃力的，在此记录一下">
+<meta name="twitter:description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来还是挺吃力的，在此记录一下">
 <meta property="og:locale" content="zh-cn">
 
   
@@ -46,8 +46,8 @@
 
 
 
-  <meta property="og:image" content="https://shcosmos.github.io/images/ns.jpg">
-  <meta property="twitter:image" content="https://shcosmos.github.io/images/ns.jpg">
+  <meta property="og:image" content="https://fb9497baa5cd519dimg.wz22.cc/imgs/2019/08/65d56ae92dda4259.jpg">
+  <meta property="twitter:image" content="https://fb9497baa5cd519dimg.wz22.cc/imgs/2019/08/65d56ae92dda4259.jpg">
 
 
 
@@ -186,7 +186,7 @@
   <div class="post-header-cover
               text-center
               post-header-cover--full"
-       style="background-image:url('/images/ns.jpg')"
+       style="background-image:url('https://fb9497baa5cd519dimg.wz22.cc/imgs/2019/08/65d56ae92dda4259.jpg')"
        data-behavior="5">
     
   </div>
@@ -223,7 +223,22 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>开坑，待更新</p>
+              
+
+<p>[TOC]</p>
+
+<h1 id="0x00-house-of-orange">0x00 House of Orange</h1>
+
+<p>由于只是个人经验记录为主的一篇博文，所以并不打算将前人已经讲得很细致的部分再重复，因此建议初学者先阅读</p>
+
+<ul>
+<li><a href="[https://veritas501.space/2017/12/13/IO%20FILE%20学习笔记/#more](https://veritas501.space/2017/12/13/IO%20FILE%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more)">Veritas501：IO FILE 学习笔记</a></li>
+<li><a href="https://www.anquanke.com/post/id/168802">新手向——IO_file全流程浅析</a></li>
+</ul>
+
+<h2 id="0x0-free-without-free">0x0 free without free</h2>
+
+<p>本题最大特色就是功能中不提供free函数，而没有free意味着传统leak和attack方式全部失效</p>
 
               
             </div>
