@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Abouts on Welcome to Doki Doki Pwn Club</title>
-    <link>https://shcosmos.github.io/about/</link>
-    <description>Recent content in Abouts on Welcome to Doki Doki Pwn Club</description>
+    <title>Abouts on Doki Doki Pwn Club</title>
+    <link>https://example.org/about/</link>
+    <description>Recent content in Abouts on Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <copyright>(c) 2019 Strelizia.</copyright>
-    <lastBuildDate>Sun, 11 Aug 2019 01:55:15 +0800</lastBuildDate>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Aug 2019 13:10:15 +0800</lastBuildDate>
     
-	<atom:link href="https://shcosmos.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.org/about/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://shcosmos.github.io/about/about/</link>
-      <pubDate>Sun, 11 Aug 2019 01:55:15 +0800</pubDate>
+      <link>https://example.org/about/about/</link>
+      <pubDate>Sun, 11 Aug 2019 13:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/about/about/</guid>
-      <description>&lt;p&gt;HDU 大二&lt;br /&gt;
-Vidar-Team 成员&lt;br /&gt;
-日常在pwn题和被题pwn中挣扎&lt;br /&gt;
-OSU入门中&lt;/p&gt;</description>
+      <guid>https://example.org/about/about/</guid>
+      <description>A Notech-Otaku</description>
     </item>
     
   </channel>
