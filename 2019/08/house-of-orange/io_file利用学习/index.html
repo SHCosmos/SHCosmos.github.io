@@ -34,6 +34,8 @@
     
       <meta property="article:tag" content="PWN">
     
+      <meta property="article:tag" content="Heap">
+    
   
 
 
@@ -262,7 +264,20 @@
 
 <h3 id="0x1-leak-with-unsorted-large-bin">0x1 leak with unsorted&amp;large bin</h3>
 
-<p>　　</p>
+<p>　　修改完top chunk的size位后malloc一个大于它的chunk，会发现原先的top chunk已经被free并被放入unsorted bin中，例如这样：</p>
+
+<ul>
+<li>00005625E60F3080  00 00 00 00 00 00 00 00  61 0F 00 00 00 00 00 00</li>
+<li>00005625E60F3090  78 9B 88 3A FD 7E 00 00  78 9B 88 3A FD 7E 00 00</li>
+
+<li><p>00005625E60F30A0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00</p></li>
+
+<li><p>00005634B6E880C0  00 00 00 00 00 00 00 00  11 04 00 00 00 00 00 00</p></li>
+
+<li><p>00005634B6E880D0  64 64 64 64 64 64 64 64  88 71 80 7E A7 7F 00 00</p></li>
+
+<li><p>00005634B6E880E0  C0 80 E8 B6 34 56 00 00  C0 80 E8 B6 34 56 00 00</p></li>
+</ul>
 
 <p>　　</p>
 
@@ -282,6 +297,8 @@
                     <span class="text-color-light text-small">标签</span><br/>
                     
   <a class="tag tag--primary tag--small" href="https://shcosmos.github.io/tags/pwn/">PWN</a>
+
+  <a class="tag tag--primary tag--small" href="https://shcosmos.github.io/tags/heap/">Heap</a>
 
                   </div>
                 
