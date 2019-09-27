@@ -6,17 +6,17 @@
     <description>Recent content in PWN on Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Aug 2019 03:10:15 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Sep 2019 23:10:15 +0800</lastBuildDate>
     
 	<atom:link href="https://shcosmos.github.io/tags/pwn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>House of Orange/IO_FILE利用学习</title>
-      <link>https://shcosmos.github.io/2019/08/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Sun, 11 Aug 2019 03:10:15 +0800</pubDate>
+      <link>https://shcosmos.github.io/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 27 Sep 2019 23:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/2019/08/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://shcosmos.github.io/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
       <description>涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来比较吃力，在此记录一下</description>
     </item>
     

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.56.3 with theme Tranquilpeak 0.4.6-BETA">
+<meta name="author" content="SHCosmos">
+<meta name="keywords" content="">
+<meta name="description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来比较吃力，在此记录一下">
+
+
+<meta property="og:description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来比较吃力，在此记录一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="House of Orange/IO_FILE利用学习">
+<meta name="twitter:title" content="House of Orange/IO_FILE利用学习">
+<meta property="og:url" content="https://shcosmos.github.io/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">
+<meta property="twitter:url" content="https://shcosmos.github.io/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">
+<meta property="og:site_name" content="Doki Doki Pwn Club">
+<meta property="og:description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来比较吃力，在此记录一下">
+<meta name="twitter:description" content="涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来比较吃力，在此记录一下">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2019-09-27T23:10:15">
+  
+  
+    <meta property="article:modified_time" content="2019-09-27T23:10:15">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="PWN">
+    
+      <meta property="article:tag" content="Heap">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://xxx.lwh.red/ns.jpg">
+  <meta property="twitter:image" content="http://xxx.lwh.red/ns.jpg">
+
+
+
+
+  <meta property="og:image" content="http://xxx.lwh.red/logo.png">
+  <meta property="twitter:image" content="http://xxx.lwh.red/logo.png">
+
+
+    <title>House of Orange/IO_FILE利用学习</title>
+
+    <link rel="icon" href="https://shcosmos.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://shcosmos.github.io/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://shcosmos.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://shcosmos.github.io/">Doki Doki Pwn Club</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://shcosmos.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="http://xxx.lwh.red/logo.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+        <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://shcosmos.github.io/#about">
+          <img class="sidebar-profile-picture" src="http://xxx.lwh.red/logo.png" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">SHCosmos</h4>
+        
+          <h5 class="sidebar-profile-bio">不可能を始めればいいんだ</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://shcosmos.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://shcosmos.github.io/post">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Posts</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://shcosmos.github.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://shcosmos.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/SHCosmos/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://osu.ppy.sh/users/13188120" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-music"></i>
+      
+      <span class="sidebar-button-desc">OSU</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=240 height=86 src="//music.163.com/outchain/player?type=2&id=40915599&auto=0&height=66"></iframe>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              post-header-cover--full"
+       style="background-image:url('http://xxx.lwh.red/ns.jpg')"
+       data-behavior="5">
+    
+  </div>
+
+
+      <div id="main" data-behavior="5"
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">醒醒,起来做题了</span>
+          
+          
+            <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title" itemprop="headline">
+      House of Orange/IO_FILE利用学习
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-27T23:10:15&#43;08:00">
+        
+  九月 27, 2019
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h1 id="0x00-house-of-orange">0x00 House of Orange</h1>
+
+<p>由于只是个人经验记录为主的一篇博文，所以并不打算将前人已经讲得很细致的部分再重复，因此建议初学者先阅读</p>
+
+<ul>
+<li><a href="https://veritas501.space/2017/12/13/IO%20FILE%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Veritas501：IO FILE 学习笔记</a></li>
+<li><a href="https://www.anquanke.com/post/id/168802">新手向——IO_file全流程浅析</a></li>
+</ul>
+
+<h3 id="0x0-free-without-free">0x0 free without free</h3>
+
+<p>本题最大特色就是功能中不提供free函数，而没有free意味着传统leak和attack方式全部失效。利用top chunk的特性来得到一个freed chunk即是orange带来的全新攻击思路。</p>
+
+<blockquote>
+<p>这种操作的原理简单来说是当前堆的 top chunk 尺寸不足以满足申请分配的大小的时候，原来的 top chunk 会被释放并被置入 unsorted bin 中</p>
+</blockquote>
+
+<p>　　由于题目功能中存在的堆溢出，修改top chunk size非常轻松，但是也有一些特别的约束</p>
+
+<ul>
+<li>大于MINSIZE(一般为0x10)</li>
+<li>下一个chunk申请过大(0x20000)会导致调用mmap从而不会free top chunk</li>
+<li>top chunk的地址+size后要满足页(0x1000)对齐</li>
+</ul>
+
+<h3 id="0x1-leak-with-unsorted-large-bin">0x1 leak with unsorted&amp;large bin</h3>
+
+<p>修改完top chunk的size位后malloc一个大于它的chunk，会发现原先的top chunk已经被free并被放入unsorted bin中，例如这样：</p>
+
+<pre><code class="language-c">- 00005625E60F3080  00 00 00 00 00 00 00 00  61 0F 00 00 00 00 00 00
+- 00005625E60F3090  78 9B 88 3A FD 7E 00 00  78 9B 88 3A FD 7E 00 00
+- 00005625E60F30A0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00
+</code></pre>
+
+<p>借此可以leak出libc base，不过我们还需要heap base，获取起来也非常轻松，再次malloc一个在large bin范围并小于修改后的top chunk size的chunk。在malloc的分配流程中，遍历unsorted bin时由于此时被free的top chunk大小不等于malloc申请的大小，因此会先将其放入large bin中。根据large bin特性，当其中仅有一个chunk时，其fd/bk_nextsize会指向自己。第二遍遍历后会再将它分割成两个chunk，低地址的chunk就用于满足malloc的申请，例如这样：</p>
+
+<pre><code class="language-c">- 00005634B6E880C0  00 00 00 00 00 00 00 00  11 04 00 00 00 00 00 00
+- 00005634B6E880D0  88 71 80 7E A7 7F 00 00  88 71 80 7E A7 7F 00 00
+- 00005634B6E880E0  C0 80 E8 B6 34 56 00 00  C0 80 E8 B6 34 56 00 00
+</code></pre>
+
+<p>分别填充0x8和0x10个字符后就可以leak得到libcbase和heapbase</p>
+
+<h3 id="0x2-劫持">0x2 劫持</h3>
+
+<p>文件流的具体概念在此简单描述一下，最为常见的标准输出(stdout)实际上也是一个文件流，在pwndbg里查看一下：</p>
+
+<pre><code class="language-c">pwndbg&gt; p _IO_2_1_stdout_
+$5 = {
+  file = {
+    _flags = -72537977, 
+    _IO_read_ptr = 0x7ffff7dd26a3 &lt;_IO_2_1_stdout_+131&gt; &quot;\n&quot;, 
+    _IO_read_end = 0x7ffff7dd26a3 &lt;_IO_2_1_stdout_+131&gt; &quot;\n&quot;, 
+    _IO_read_base = 0x7ffff7dd26a3 &lt;_IO_2_1_stdout_+131&gt; &quot;\n&quot;, 
+    _IO_write_base = 0x7ffff7dd26a3 &lt;_IO_2_1_stdout_+131&gt; &quot;\n&quot;, 
+    _IO_write_ptr = 0x7ffff7dd26a3 &lt;_IO_2_1_stdout_+131&gt; &quot;\n&quot;, 
+    _IO_write_end = 0x7ffff7dd26a3 &lt;_IO_2_1_stdout_+131&gt; &quot;\n&quot;, 
+    _IO_buf_base = 0x7ffff7dd26a3 &lt;_IO_2_1_stdout_+131&gt; &quot;\n&quot;, 
+    _IO_buf_end = 0x7ffff7dd26a4 &lt;_IO_2_1_stdout_+132&gt; &quot;&quot;, 
+    _IO_save_base = 0x0, 
+    _IO_backup_base = 0x0, 
+    _IO_save_end = 0x0, 
+    _markers = 0x0, 
+    _chain = 0x7ffff7dd18e0 &lt;_IO_2_1_stdin_&gt;, 
+    _fileno = 1, 
+    _flags2 = 0, 
+    _old_offset = -1, 
+    _cur_column = 0, 
+    _vtable_offset = 0 '\000', 
+    _shortbuf = &quot;\n&quot;, 
+    _lock = 0x7ffff7dd3780 &lt;_IO_stdfile_1_lock&gt;, 
+    _offset = -1, 
+    _codecvt = 0x0, 
+    _wide_data = 0x7ffff7dd17a0 &lt;_IO_wide_data_1&gt;, 
+    _freeres_list = 0x0, 
+    _freeres_buf = 0x0, 
+    __pad5 = 0, 
+    _mode = -1, 
+    _unused2 = '\000' &lt;repeats 19 times&gt;
+  }, 
+  vtable = 0x7ffff7dd06e0 &lt;_IO_file_jumps&gt;
+}
+
+</code></pre>
+
+<ul>
+<li>文件流间通过_chain形成单向链表，而_IO_list_all是指向这个链表中的第一个结构体，一般是_IO_2_1<em>stderr</em></li>
+<li>flag标志位在利用后续会遇到检测，所以一般需要对其进行构造。</li>
+<li>_IO_read_xxx与_IO_write_xxx这六个指针涉及文件流读取与写入相关操作，对其进行修改可以用来进行任意地址的读取或者写入，是IO_FILE相关利用的重要部分，不过在此题中并未用到这个技巧</li>
+
+<li><p>vtable指向一个虚表，其中是一些文件流操作时会用到的函数指针</p>
+
+<pre><code class="language-c">pwndbg&gt; p *((struct _IO_jump_t *)0x7ffff7dd06e0)
+$1 = {
+__dummy = 0, 
+__dummy2 = 0, 
+__finish = 0x7ffff7a869c0 &lt;_IO_new_file_finish&gt;, 
+__overflow = 0x7ffff7a87730 &lt;_IO_new_file_overflow&gt;, 
+__underflow = 0x7ffff7a874a0 &lt;_IO_new_file_underflow&gt;, 
+__uflow = 0x7ffff7a88600 &lt;__GI__IO_default_uflow&gt;, 
+__pbackfail = 0x7ffff7a89980 &lt;__GI__IO_default_pbackfail&gt;, 
+__xsputn = 0x7ffff7a861e0 &lt;_IO_new_file_xsputn&gt;, 
+__xsgetn = 0x7ffff7a85ec0 &lt;__GI__IO_file_xsgetn&gt;, 
+__seekoff = 0x7ffff7a854c0 &lt;_IO_new_file_seekoff&gt;, 
+__seekpos = 0x7ffff7a88a00 &lt;_IO_default_seekpos&gt;, 
+__setbuf = 0x7ffff7a85430 &lt;_IO_new_file_setbuf&gt;, 
+__sync = 0x7ffff7a85370 &lt;_IO_new_file_sync&gt;, 
+__doallocate = 0x7ffff7a7a180 &lt;__GI__IO_file_doallocate&gt;, 
+__read = 0x7ffff7a861a0 &lt;__GI__IO_file_read&gt;, 
+__write = 0x7ffff7a85b70 &lt;_IO_new_file_write&gt;, 
+__seek = 0x7ffff7a85970 &lt;__GI__IO_file_seek&gt;, 
+__close = 0x7ffff7a85340 &lt;__GI__IO_file_close&gt;, 
+__stat = 0x7ffff7a85b60 &lt;__GI__IO_file_stat&gt;, 
+__showmanyc = 0x7ffff7a89af0 &lt;_IO_default_showmanyc&gt;, 
+__imbue = 0x7ffff7a89b00 &lt;_IO_default_imbue&gt;
+}
+
+</code></pre></li>
+</ul>
+
+<p>本题劫持控制流的根方法就是劫持vtable，劫持流程如下：</p>
+
+<p><code>malloc_printerr</code>-&gt;<code>__libc_message</code>-&gt;<code>abort</code>-&gt;<code>fflush</code>(<code>_IO_flush_all_lockp</code>)-&gt;vtable-&gt;<code>_IO_OVERFLOW</code></p>
+
+<p>malloc_printerr是malloc源码中专门用于输出报错信息的函数，只要malloc或是free的过程中某项检查出现了问题，例如double free，就会调用malloc_printerr</p>
+
+<p>而经历一番调用链后，关键点在_IO_flush_all_lockp中发生，截取一些关键部分代码：</p>
+
+<pre><code class="language-c">{
+......
+  fp = (_IO_FILE *) _IO_list_all; //_IO_list_all赋给fp
+  while (fp != NULL)
+    {
+......
+	  &amp;&amp; _IO_OVERFLOW (fp, EOF) == EOF)//调用vtable中的_IO_OVERFLOW，改为system或onegadget即可劫持控制流
+......
+      if (last_stamp != _IO_list_all_stamp) //若无法bypass，则通过结构体中_chain寻找下一个文件流
+	{
+......
+	  fp = (_IO_FILE *) _IO_list_all;
+	  last_stamp = _IO_list_all_stamp;
+	}
+      else
+	fp = fp-&gt;_chain;
+    }
+......
+}
+</code></pre>
+
+<ul>
+<li>函数开始时fp赋值为_IO_list_all，同时在调用可被劫持的_IO_OVERFLOW之前需要bypass一定的条件，若bypass失败则会让fp=_IO_list_all-&gt;_chain</li>
+<li>因此若_IO_list_all指向的结构体内部无法构造从而bypass失败，可以考虑让它的_chain指向一块可控区域，在下一次循环中再尝试调用_IO_OVERFLOW</li>
+<li>自然，若_IO_list_all直接指向可控内存，就可以一次性构造完bypass条件调用_IO_OVERFLOW</li>
+</ul>
+
+<p>以上介绍了是如何通过IO_FILE利用来进行控制流劫持，关键点在于</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://shcosmos.github.io/tags/pwn/">PWN</a>
+
+  <a class="tag tag--primary tag--small" href="https://shcosmos.github.io/tags/heap/">Heap</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://shcosmos.github.io/2019/08/first/" data-tooltip="First">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 SHCosmos. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://shcosmos.github.io/2019/08/first/" data-tooltip="First">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://xxx.lwh.red/logo.png" alt="作者的图片" />
+    
+    <h4 id="about-card-name">SHCosmos</h4>
+    
+      <div id="about-card-bio">不可能を始めればいいんだ</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        HDU-18
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        sh
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    <div id="cover" style="background-image:url('http://xxx.lwh.red/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://shcosmos.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/shcosmos.github.io\/2019\/09\/house-of-orange\/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0\/';
+          
+            this.page.identifier = '\/2019\/09\/house-of-orange\/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
