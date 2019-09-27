@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Doki Doki Pwn Club</title>
-    <link>https://shcosmos.github.io/tags/</link>
+    <link>https://cosmos.red/tags/</link>
     <description>Recent content in Tags on Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Sep 2019 23:10:15 +0800</lastBuildDate>
     
-	<atom:link href="https://shcosmos.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cosmos.red/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Heap</title>
-      <link>https://shcosmos.github.io/tags/heap/</link>
+      <link>https://cosmos.red/tags/heap/</link>
       <pubDate>Fri, 27 Sep 2019 23:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/tags/heap/</guid>
+      <guid>https://cosmos.red/tags/heap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PWN</title>
-      <link>https://shcosmos.github.io/tags/pwn/</link>
+      <link>https://cosmos.red/tags/pwn/</link>
       <pubDate>Fri, 27 Sep 2019 23:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/tags/pwn/</guid>
+      <guid>https://cosmos.red/tags/pwn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>about</title>
-      <link>https://shcosmos.github.io/tags/about/</link>
+      <link>https://cosmos.red/tags/about/</link>
       <pubDate>Sun, 11 Aug 2019 13:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/tags/about/</guid>
+      <guid>https://cosmos.red/tags/about/</guid>
       <description></description>
     </item>
     
     <item>
       <title>friends</title>
-      <link>https://shcosmos.github.io/tags/friends/</link>
+      <link>https://cosmos.red/tags/friends/</link>
       <pubDate>Sun, 11 Aug 2019 13:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/tags/friends/</guid>
+      <guid>https://cosmos.red/tags/friends/</guid>
       <description></description>
     </item>
     

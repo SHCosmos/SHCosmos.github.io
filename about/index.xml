@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Abouts on Doki Doki Pwn Club</title>
-    <link>https://shcosmos.github.io/about/</link>
+    <link>https://cosmos.red/about/</link>
     <description>Recent content in Abouts on Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 11 Aug 2019 13:10:15 +0800</lastBuildDate>
     
-	<atom:link href="https://shcosmos.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cosmos.red/about/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About&amp;Friends</title>
-      <link>https://shcosmos.github.io/about/about/</link>
+      <link>https://cosmos.red/about/about/</link>
       <pubDate>Sun, 11 Aug 2019 13:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/about/about/</guid>
+      <guid>https://cosmos.red/about/about/</guid>
       <description>A Notech-Otaku</description>
     </item>
     

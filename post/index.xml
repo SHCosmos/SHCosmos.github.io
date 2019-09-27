@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Doki Doki Pwn Club</title>
-    <link>https://shcosmos.github.io/post/</link>
+    <link>https://cosmos.red/post/</link>
     <description>Recent content in Posts on Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Sep 2019 23:10:15 +0800</lastBuildDate>
     
-	<atom:link href="https://shcosmos.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cosmos.red/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>House of Orange/IO_FILE利用学习</title>
-      <link>https://shcosmos.github.io/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
+      <link>https://cosmos.red/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Fri, 27 Sep 2019 23:10:15 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <guid>https://cosmos.red/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/</guid>
       <description>涉及到IO_FILE利用的题还是挺多的……而且相关概念也比较复杂，学习起来比较吃力，在此记录一下</description>
     </item>
     
     <item>
       <title>First</title>
-      <link>https://shcosmos.github.io/2019/08/first/</link>
+      <link>https://cosmos.red/2019/08/first/</link>
       <pubDate>Sun, 11 Aug 2019 01:38:12 +0800</pubDate>
       
-      <guid>https://shcosmos.github.io/2019/08/first/</guid>
+      <guid>https://cosmos.red/2019/08/first/</guid>
       <description>&lt;p&gt;人生苦短我选hugo&lt;/p&gt;</description>
     </item>
     
