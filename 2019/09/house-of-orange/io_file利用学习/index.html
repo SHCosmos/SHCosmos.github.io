@@ -242,7 +242,8 @@
 <p>由于只是个人经验记录为主的一篇博文，所以并不打算将前人已经讲得很细致的部分再重复，因此建议初学者先阅读</p>
 
 <ul>
-<li><a href="https://veritas501.space/2017/12/13/IO%20FILE%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">Veritas501：IO FILE 学习笔记</a></li>
+<li>[Veritas501：IO FILE3</li>
+<li>.学习笔记](<a href="https://veritas501.space/2017/12/13/IO%20FILE%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">https://veritas501.space/2017/12/13/IO%20FILE%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more</a>)</li>
 <li><a href="https://www.anquanke.com/post/id/168802">新手向——IO_file全流程浅析</a></li>
 </ul>
 
@@ -280,7 +281,7 @@
 
 <p>分别填充0x8和0x10个字符后就可以leak得到libcbase和heapbase</p>
 
-<h3 id="0x2-劫持">0x2 劫持</h3>
+<h3 id="0x2-io-file">0x2 IO_FILE</h3>
 
 <p>文件流的具体概念在此简单描述一下，最为常见的标准输出(stdout)实际上也是一个文件流，在pwndbg里查看一下：</p>
 
@@ -387,12 +388,79 @@ __imbue = 0x7ffff7a89b00 &lt;_IO_default_imbue&gt;
 </code></pre>
 
 <ul>
-<li>函数开始时fp赋值为_IO_list_all，同时在调用可被劫持的_IO_OVERFLOW之前需要bypass一定的条件，若bypass失败则会让fp=_IO_list_all-&gt;_chain</li>
+<li>函数开始时fp赋值为_IO_list_all，同时在调用可被劫持的_IO_OVERFLOW之前需要bypass一定的条件，若bypass失败则会让fp=_IO_list_all-&gt;_chain，直到fp==0</li>
 <li>因此若_IO_list_all指向的结构体内部无法构造从而bypass失败，可以考虑让它的_chain指向一块可控区域，在下一次循环中再尝试调用_IO_OVERFLOW</li>
 <li>自然，若_IO_list_all直接指向可控内存，就可以一次性构造完bypass条件调用_IO_OVERFLOW</li>
 </ul>
 
-<p>以上介绍了是如何通过IO_FILE利用来进行控制流劫持，关键点在于</p>
+<p>以上介绍了是如何通过IO_FILE利用来进行控制流劫持，关键点在于修改_IO_list_all，或者是直接对文件流结构链表中任意一个元素中的vtable进行劫持，就可以在malloc_printerr调用时劫持控制流。接下来的问题就在于如何修改文件流链表。</p>
+
+<h3 id="0x3-unsorted-bin-attack-on-io-list-all">0x3 Unsorted Bin Attack  on _IO_list_all</h3>
+
+<pre><code class="language-python">Unsorted Bin Attack是一项较为简单的攻击方式，简单来说就是若我们能控制正处于unsorded bin
+中某个chunk的bk，就可以将main_arena+0x58这个固定的数值写入bk+0x10的位置。
+</code></pre>
+
+<p>一般而言，main_arena+0x58这个无法控制的值对于任意地址写入来说并没有啥大用，比较常见的用法有改大global_max_fast等等，仅仅将其视为一个较大的数值来覆盖一个想让它变大的变量，而个人认为house of orange最精妙的地方就在于，让它作为指针成为了利用链的核心。</p>
+
+<p>可能看到这里你已经想到了用Unsorted Bin Attack修改_IO_list_all为main_arena+0x58，此时将其视为文件流结构体的话，一般来说画风会是这个样子的：</p>
+
+<pre><code class="language-c">pwndbg&gt; p *(struct _IO_FILE_plus *)0x7ffff7dd1b78
+$1 = {
+  file = {
+    _flags = 1433903120, 
+    _IO_read_ptr = 0x555555758510 &quot;&quot;, 
+    _IO_read_end = 0x555555758510 &quot;&quot;, 
+    _IO_read_base = 0x555555758510 &quot;&quot;, 
+    _IO_write_base = 0x7ffff7dd1b88 &lt;main_arena+104&gt; &quot;\020\205uUUU&quot;, 
+    _IO_write_ptr = 0x7ffff7dd1b88 &lt;main_arena+104&gt; &quot;\020\205uUUU&quot;, 
+    _IO_write_end = 0x7ffff7dd1b98 &lt;main_arena+120&gt; &quot;\210\033\335\367\377\177&quot;, 
+    _IO_buf_base = 0x7ffff7dd1b98 &lt;main_arena+120&gt; &quot;\210\033\335\367\377\177&quot;, 
+    _IO_buf_end = 0x7ffff7dd1ba8 &lt;main_arena+136&gt; &quot;\230\033\335\367\377\177&quot;, 
+    _IO_save_base = 0x7ffff7dd1ba8 &lt;main_arena+136&gt; &quot;\230\033\335\367\377\177&quot;, 
+    _IO_backup_base = 0x7ffff7dd1bb8 &lt;main_arena+152&gt; &quot;\250\033\335\367\377\177&quot;, 
+    _IO_save_end = 0x7ffff7dd1bb8 &lt;main_arena+152&gt; &quot;\250\033\335\367\377\177&quot;, 
+    _markers = 0x7ffff7dd1bc8 &lt;main_arena+168&gt;, 
+    _chain = 0x7ffff7dd1bc8 &lt;main_arena+168&gt;, 
+    _fileno = -136504360, 
+    _flags2 = 32767, 
+    _old_offset = 140737351850968, 
+    _cur_column = 7144, 
+    _vtable_offset = -35 '\335', 
+    _shortbuf = &lt;incomplete sequence \367&gt;, 
+    _lock = 0x7ffff7dd1be8 &lt;main_arena+200&gt;, 
+    _offset = 140737351851000, 
+    _codecvt = 0x7ffff7dd1bf8 &lt;main_arena+216&gt;, 
+    _wide_data = 0x7ffff7dd1c08 &lt;main_arena+232&gt;, 
+    _freeres_list = 0x7ffff7dd1c08 &lt;main_arena+232&gt;, 
+    _freeres_buf = 0x7ffff7dd1c18 &lt;main_arena+248&gt;, 
+    __pad5 = 140737351851032, 
+    _mode = -136504280, 
+    _unused2 = &quot;\377\177\000\000(\034\335\367\377\177\000\000\070\034\335\367\377\177\000&quot;
+  }, 
+  vtable = 0x7ffff7dd1c38 &lt;main_arena+280&gt;
+}
+
+</code></pre>
+
+<p>这一块区域指向的是smallbins数组所在的位置，要想将其作为fake文件流结构体进行构造是非常困难的。</p>
+
+<p>而且先前关于_IO_flush_all_lockp的源码分析中，其实在执行到_IO_OVERFLOW (fp, EOF) == EOF之前需要bypass一些约束条件，简单来说有两种方法，如下：</p>
+
+<ul>
+<li>fp-&gt;_mode &lt;= 0</li>
+<li>fp-&gt;_IO_write_ptr &gt; fp-&gt;_IO_write_base</li>
+</ul>
+
+<p>或者</p>
+
+<ul>
+<li>_IO_vtable_offset (fp) == 0</li>
+<li>fp-&gt;_mode &gt; 0</li>
+<li>*(fp-&gt;_wide_data+0x20) &gt; *(fp-&gt;_wide_data+0x18)</li>
+</ul>
+
+<p>因此此时_IO_list_all指向的位置无法构造为满足攻击条件的结构体，但我们注意到_chain所在的位置正好是0x60大小的smalbins链表首节点</p>
 
               
             </div>
