@@ -460,7 +460,17 @@ $1 = {
 <li>*(fp-&gt;_wide_data+0x20) &gt; *(fp-&gt;_wide_data+0x18)</li>
 </ul>
 
-<p>因此此时_IO_list_all指向的位置无法构造为满足攻击条件的结构体，但我们注意到_chain所在的位置正好是0x60大小的smalbins链表首节点</p>
+<p>因此此时 _IO_list_all指向的位置无法构造为满足攻击条件的结构体，但我们注意到_chain所在的位置正好是0x60大小的 smalbins 链表首节点，因此下一轮 fp-&gt;_chain 就会把它指向的 chunk 当做一个 _IO_FILE 结构体，在其中构造 vtable 指向存放着 system 地址的地址（伪造的虚表）。此处我们打算在 malloc_printerr 中劫持控制流的话，让 fake_vtable 指向的fake struct _IO_jump_t 中的  __overflow 为 system 即可。由于 heap_base 已知，这一步很轻松。</p>
+
+<p>关于参数传递，回顾一下利用的实现部分</p>
+
+<ul>
+<li>_IO_OVERFLOW (fp, EOF) == EOF</li>
+</ul>
+
+<p>fp是指向之前用chunk伪装的fake _IO_FILE结构的指针，因此只要将/bin/sh填入该chunk开头部分就可以执行system(&ldquo;/bin/sh&rdquo;)来getshell了</p>
+
+<p>待完善……</p>
 
               
             </div>
@@ -496,7 +506,7 @@ $1 = {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/11/topping-cosmoss-diary/" data-tooltip="[Topping] Cosmos&#39;s Diary">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -564,7 +574,7 @@ $1 = {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/11/topping-cosmoss-diary/" data-tooltip="[Topping] Cosmos&#39;s Diary">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>

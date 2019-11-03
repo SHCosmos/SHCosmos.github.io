@@ -3,9 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://cosmos.red/</loc>
-    <lastmod>2019-09-27T23:10:15+08:00</lastmod>
+    <loc>https://cosmos.red/tags/diary/</loc>
+    <lastmod>2019-11-03T03:10:15+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cosmos.red/</loc>
+    <lastmod>2019-11-03T03:10:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cosmos.red/post/</loc>
+    <lastmod>2019-11-03T03:10:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cosmos.red/tags/</loc>
+    <lastmod>2019-11-03T03:10:15+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cosmos.red/2019/11/topping-cosmoss-diary/</loc>
+    <lastmod>2019-11-03T03:10:15+08:00</lastmod>
   </url>
   
   <url>
@@ -21,18 +44,6 @@
   
   <url>
     <loc>https://cosmos.red/tags/pwn/</loc>
-    <lastmod>2019-09-27T23:10:15+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cosmos.red/post/</loc>
-    <lastmod>2019-09-27T23:10:15+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cosmos.red/tags/</loc>
     <lastmod>2019-09-27T23:10:15+08:00</lastmod>
     <priority>0</priority>
   </url>
