@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Doki Doki Pwn Club</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Nov 2019 03:10:15 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Nov 2019 10:10:15 +0800</lastBuildDate>
     
 	<atom:link href="https://cosmos.red/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,19 @@
     <item>
       <title>[Topping] Cosmos&#39;s Diary</title>
       <link>https://cosmos.red/2019/11/topping-cosmoss-diary/</link>
-      <pubDate>Sun, 03 Nov 2019 03:10:15 +0800</pubDate>
+      <pubDate>Sun, 10 Nov 2019 10:10:15 +0800</pubDate>
       
       <guid>https://cosmos.red/2019/11/topping-cosmoss-diary/</guid>
       <description>Early &amp;lt; Fast &amp;lt; Far</description>
+    </item>
+    
+    <item>
+      <title>《Unix环境高级编程》阅读笔记</title>
+      <link>https://cosmos.red/2019/11/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 10 Nov 2019 10:00:15 +0800</pubDate>
+      
+      <guid>https://cosmos.red/2019/11/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description>经典神书，不过名字不够酷炫=-=不然可能会更早去看吧Orz</description>
     </item>
     
     <item>

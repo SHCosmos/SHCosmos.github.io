@@ -8,31 +8,33 @@
 <meta name="generator" content="Hugo 0.56.3 with theme Tranquilpeak 0.4.6-BETA">
 <meta name="author" content="SHCosmos">
 <meta name="keywords" content="">
-<meta name="description" content="Early &lt; Fast &lt; Far">
+<meta name="description" content="经典神书，不过名字不够酷炫=-=不然可能会更早去看吧Orz">
 
 
-<meta property="og:description" content="Early &lt; Fast &lt; Far">
+<meta property="og:description" content="经典神书，不过名字不够酷炫=-=不然可能会更早去看吧Orz">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Topping] Cosmos&#39;s Diary">
-<meta name="twitter:title" content="[Topping] Cosmos&#39;s Diary">
-<meta property="og:url" content="https://cosmos.red/2019/11/topping-cosmoss-diary/">
-<meta property="twitter:url" content="https://cosmos.red/2019/11/topping-cosmoss-diary/">
+<meta property="og:title" content="《Unix环境高级编程》阅读笔记">
+<meta name="twitter:title" content="《Unix环境高级编程》阅读笔记">
+<meta property="og:url" content="https://cosmos.red/2019/11/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+<meta property="twitter:url" content="https://cosmos.red/2019/11/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
 <meta property="og:site_name" content="Doki Doki Pwn Club">
-<meta property="og:description" content="Early &lt; Fast &lt; Far">
-<meta name="twitter:description" content="Early &lt; Fast &lt; Far">
+<meta property="og:description" content="经典神书，不过名字不够酷炫=-=不然可能会更早去看吧Orz">
+<meta name="twitter:description" content="经典神书，不过名字不够酷炫=-=不然可能会更早去看吧Orz">
 <meta property="og:locale" content="zh-cn">
 
   
-    <meta property="article:published_time" content="2019-11-10T10:10:15">
+    <meta property="article:published_time" content="2019-11-10T10:00:15">
   
   
-    <meta property="article:modified_time" content="2019-11-10T10:10:15">
+    <meta property="article:modified_time" content="2019-11-10T10:00:15">
   
   
   
   
     
-      <meta property="article:tag" content="Diary">
+      <meta property="article:tag" content="apue">
+    
+      <meta property="article:tag" content="linux">
     
   
 
@@ -46,8 +48,8 @@
 
 
 
-  <meta property="og:image" content="http://xxx.lwh.red/blog/20191103/tuazSNQwVRSd.jpg">
-  <meta property="twitter:image" content="http://xxx.lwh.red/blog/20191103/tuazSNQwVRSd.jpg">
+  <meta property="og:image" content="http://xxx.lwh.red/blog/20191110/L6bgiaAO64tU.jpg">
+  <meta property="twitter:image" content="http://xxx.lwh.red/blog/20191110/L6bgiaAO64tU.jpg">
 
 
 
@@ -56,14 +58,14 @@
   <meta property="twitter:image" content="http://xxx.lwh.red/logo.png">
 
 
-    <title>[Topping] Cosmos&#39;s Diary</title>
+    <title>《Unix环境高级编程》阅读笔记</title>
 
     <link rel="icon" href="https://cosmos.red/favicon.png">
     
 
     
 
-    <link rel="canonical" href="https://cosmos.red/2019/11/topping-cosmoss-diary/">
+    <link rel="canonical" href="https://cosmos.red/2019/11/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -196,7 +198,7 @@
   <div class="post-header-cover
               text-center
               post-header-cover--full"
-       style="background-image:url('http://xxx.lwh.red/blog/20191103/tuazSNQwVRSd.jpg')"
+       style="background-image:url('http://xxx.lwh.red/blog/20191110/L6bgiaAO64tU.jpg')"
        data-behavior="5">
     
   </div>
@@ -205,22 +207,20 @@
       <div id="main" data-behavior="5"
         class="hasCover
                hasCoverMetaOut
-               hasCoverCaption">
+               ">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
-            <span class="post-header-cover-caption caption">Assassin&rsquo;s Spride</span>
           
           
             <div class="post-header main-content-wrap text-center">
   
     <h1 class="post-title" itemprop="headline">
-      [Topping] Cosmos&#39;s Diary
+      《Unix环境高级编程》阅读笔记
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2019-11-10T10:10:15&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-11-10T10:00:15&#43;08:00">
         
   十一月 10, 2019
 
@@ -235,51 +235,7 @@
             <div class="main-content-wrap">
               
 
-<h1 id="tips">Tips：</h1>
-
-<ul>
-<li>效率解决一切学习问题</li>
-</ul>
-
-<h2 id="2019">2019</h2>
-
-<p>写日志<del>除了容易弃坑以外</del>好处无穷！</p>
-
-<h3 id="11-2">11.2</h3>
-
-<p>做了大半天上海大学生安全竞赛，pwn2爆破还是写的不熟练浪费了点时间，pwn1踩了很多坑，劫持topchunk的过程中遇到了不少理解性问题，一心盯着free_hook……然后比赛就结束了，晚上再尝试了一下，其实可以直接用topchunk劫持malloc_hook，就可以避免malloc_consolidate导致crash，只是脸黑每次试one_gadget都要好多次</p>
-
-<p>正式开坑js</p>
-
-<h3 id="11-3">11.3</h3>
-
-<p>VM逆向速成失败，还是等以后重修吧<del>指的是整个逆向</del></p>
-
-<p>js进度+++，目标半个月内整个留言板=-=，php待开坑</p>
-
-<h3 id="11-4">11.4</h3>
-
-<p>为了搞一道“终极格式化字符串”，学习了一波De1CTF的Unprintable，学到了新姿势，然而发现2.27貌似栈中不再有可以直接拿来用的ld地址=-=难受，搞不出来</p>
-
-<p>晚上继续JS，虽然快考概率论了然而仍然不想动</p>
-
-<h3 id="11-5-11-6">11.5-11.6</h3>
-
-<p>JS从入门到<del>入土</del>，过了一遍语法，写了一个终极简陋的前端界面，打算先暂时告一段落，转坑apue。</p>
-
-<h3 id="11-7-11-8">11.7-11.8</h3>
-
-<p>apue看到第六章，待开坑写个阅读笔记。</p>
-
-<h3 id="11-9">11.9</h3>
-
-<p>真是脑壳疼的一天，湖湘杯py大赛刷新对垃圾比赛认知的下限，吐槽内容知乎上也都说的很全面了=-=</p>
-
-<p>pwn1和隔壁500空间经历神似，做完了才发现题目居然换文件了，浪费两个多小时……</p>
-
-<p>pwn2不知道是不是思路歪了，做得过程中像是在雷区蹦迪，疯狂踩坑<del>也可能还是因为我太菜</del>，最后头铁还是顺着思路怼出来了，可惜……原以为稳进线下的湖南旅游计划泡汤了，前一百里七十多个同分的队伍太秀了，大型行为艺术现场。</p>
-
-<p>尝试写一个爆破所有onegadget与realloc_hook调整栈可能性的爆破，手试太蠢了orz</p>
+<h1 id="先开个坑充实一下空空的首页">先开个坑充实一下空空的首页</h1>
 
               
             </div>
@@ -292,7 +248,9 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="https://cosmos.red/tags/diary/">Diary</a>
+  <a class="tag tag--primary tag--small" href="https://cosmos.red/tags/apue/">apue</a>
+
+  <a class="tag tag--primary tag--small" href="https://cosmos.red/tags/linux/">linux</a>
 
                   </div>
                 
@@ -305,7 +263,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/11/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-tooltip="《Unix环境高级编程》阅读笔记">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/" data-tooltip="House of Orange/IO_FILE利用学习">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -313,7 +271,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/11/topping-cosmoss-diary/" data-tooltip="[Topping] Cosmos&#39;s Diary">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -373,7 +331,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/11/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-tooltip="《Unix环境高级编程》阅读笔记">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/09/house-of-orange/io_file%E5%88%A9%E7%94%A8%E5%AD%A6%E4%B9%A0/" data-tooltip="House of Orange/IO_FILE利用学习">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -381,7 +339,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cosmos.red/2019/11/topping-cosmoss-diary/" data-tooltip="[Topping] Cosmos&#39;s Diary">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -507,9 +465,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/cosmos.red\/2019\/11\/topping-cosmoss-diary\/';
+          this.page.url = 'https:\/\/cosmos.red\/2019\/11\/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/';
           
-            this.page.identifier = '\/2019\/11\/topping-cosmoss-diary\/'
+            this.page.identifier = '\/2019\/11\/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/'
           
         };
         (function() {
